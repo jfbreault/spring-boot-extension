@@ -1,0 +1,17 @@
+# Standardize carriage returns on commit
+* text eol=lf
+*.ttf binary
+*.woff binary
+*.eot binary
+*.war binary
+*.png binary
+*.jpg binary
+*.zip binary
+*.class binary
+*.jar binary
+*.tgz binary
+*.ico binary
+chromedriver binary
+*.node binary
+*.ttf binary
+*.otf binary

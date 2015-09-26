@@ -1,0 +1,83 @@
+# compiled source        #
+##########################
+*.o
+*.so
+*.pyc
+*.pyo
+
+# protoc generated files #
+##########################
+*.pb.h
+*.pb.cc
+
+# SCons files and dirs   #
+##########################
++*
+.*.dblite
+
+# Temporary files        #
+##########################
+*.sw?
+*.*~
+.DS_Store
+
+# Java files             #
+##########################
+target/
+
+# Eclipse files          #
+##########################
+.settings/
+.classpath
+.project
+.externalToolBuilders/
+.springBeans
+
+# IntelliJ IDEA files    #
+##########################
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# NetBeans files         #
+##########################
+nb*.xml
+
+# Miscellaneous          #
+##########################
+*.log
+ui/app/src/main/assets/scaling/all.js
+
+
+# jenkins stuff          #
+##########################
+jenkins.porperties
+
+
+#  node stuff          #
+##########################
+node
+.cache
+.tmp
+node_modules
+pom.xml.versionsBackup
+node_modules_production
+.tern-project 
+coverage/
+
+#test for dev properties #
+##########################
+ui/app/src/local/
+*.dev.properties
+*.local.properties
+
+# external git diff tool files #
+################################
+*.orig
+*.BACKUP.*
+*.BASE.*
+*.REMOTE.*
+*.LOCAL.*
+/.metadata/
+/RemoteSystemsTempFiles/
