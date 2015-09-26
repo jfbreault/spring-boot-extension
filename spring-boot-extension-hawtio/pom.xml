@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>spring-boot-extension-hawtio</artifactId>
+
+	<parent>
+		<groupId>com.ticketmaster</groupId>
+		<artifactId>spring-boot-extension</artifactId>
+		<version>1.3.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<artifactId>hawtio-web</artifactId>
+			<groupId>io.hawt</groupId>
+			<type>war</type>
+			<scope>provided</scope>
+			<version>${hawtio.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.hawt</groupId>
+			<artifactId>hawtio-system</artifactId>
+			<version>${hawtio.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Repackage static content from war into a jar, placing static content 
+				under /static/hawtio -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>repackage</id>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<phase>prepare-package</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes/static/hawtio/</outputDirectory>
+<!-- 							<outputDirectory>${basedir}/src/main/resources/static/hawtio/</outputDirectory> -->
+							<includeArtifactIds>hawtio-web</includeArtifactIds>
+							<excludeTypes>pom</excludeTypes>
+							<excludes>**/WEB-INF/**,**/META-INF/**</excludes>
+							<excludeTransitive>true</excludeTransitive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- angularJs html5mode makes things difficult, as it requires a server 
+				side redirect to be configured, and relying on a 404 redirect is also problematic 
+				so removing this feature -->
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.3</version>
+				<configuration>
+				    <basedir>${basedir}/target/classes/static/hawtio</basedir>
+<!-- 					<basedir>${basedir}/src/main/resources/static/hawtio</basedir> -->
+				</configuration>
+				<executions>
+					<execution>
+						<id>removeBaseRewriteStatement</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>index.html</include>
+							</includes>
+							<encoding>ISO-8859-1</encoding>
+							<token>document.write("&lt;base href='/" + base + "/' /&gt;");</token>
+							<value>//document.write("&lt;base href='/" + base + "/' /&gt;");</value>
+							<regex>false</regex>
+							<quiet>false</quiet>
+						</configuration>
+					</execution>
+					<execution>
+						<id>removeHtml5Mode</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>app/app.js</include>
+							</includes>
+							<encoding>ISO-8859-1</encoding>
+							<token>$locationProvider.html5Mode(true);</token>
+							<value>$locationProvider.html5Mode(false);</value>
+							<regex>false</regex>
+							<quiet>false</quiet>
+						</configuration>
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
+	</build>
+</project>
