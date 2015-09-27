@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.ticketmaster.boot.logging.Appender;
@@ -29,11 +30,13 @@ public class LoggingMvcEndpoint implements MvcEndpoint {
     }
 
     @RequestMapping(value = "/logger", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public List<Logger> getLoggers() {
         return delegate.getLoggers();
     }
 
     @RequestMapping(value = "/logger/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Logger getLogger(@PathVariable String name) {
         return delegate.getLogger(name);
     }
@@ -45,17 +48,20 @@ public class LoggingMvcEndpoint implements MvcEndpoint {
     }
 
     @RequestMapping(value = "/log", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public List<Appender> getAppenders() {
         return delegate.getAppenders();
     }
 
     @RequestMapping(value = "/log/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public List<LogEvent> getLogEvent(@PathVariable String name) {
         return delegate.getLogEvents(name);
     }
 
     @RequestMapping(value = "/log/{name}/{after}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<LogEvent> getLogEvent(@PathVariable String name, @PathVariable @DateTimeFormat(iso = ISO.DATE_TIME) Date after) {
+    @ResponseBody
+    public List<LogEvent> getLogEvent(@PathVariable String name, @PathVariable Date after) {
         return delegate.getLogEvents(name, after);
     }
 

@@ -32,6 +32,7 @@ target/
 .project
 .externalToolBuilders/
 .springBeans
+.factorypath
 
 # IntelliJ IDEA files    #
 ##########################

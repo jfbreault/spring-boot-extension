@@ -16,7 +16,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 
 import com.ticketmaster.boot.logging.LogEvent;
-import com.ticketmaster.boot.logging.LogEventRepositoryAccessor;
+import com.ticketmaster.boot.logging.LogEventRepositorySupplier;
 import com.ticketmaster.boot.logging.Logger;
 import com.ticketmaster.boot.logging.builder.logback.LogbackLoggerBuilder;
 
@@ -61,8 +61,8 @@ public class LogbackLoggingEndpoint extends BaseLoggingEndpoint<Object> implemen
 
         Appender<ILoggingEvent> appender = getAppender(name);
         if (appender != null) {
-            if (appender instanceof LogEventRepositoryAccessor) {
-                return ((LogEventRepositoryAccessor) appender).getRepository().findAll();
+            if (appender instanceof LogEventRepositorySupplier) {
+                return ((LogEventRepositorySupplier) appender).getRepository().findAll();
             }
         }
 
@@ -75,8 +75,8 @@ public class LogbackLoggingEndpoint extends BaseLoggingEndpoint<Object> implemen
 
         Appender<ILoggingEvent> appender = getAppender(name);
         if (appender != null) {
-            if (appender instanceof LogEventRepositoryAccessor) {
-                return ((LogEventRepositoryAccessor) appender).getRepository().find(after);
+            if (appender instanceof LogEventRepositorySupplier) {
+                return ((LogEventRepositorySupplier) appender).getRepository().find(after);
             }
         }
 
@@ -92,7 +92,7 @@ public class LogbackLoggingEndpoint extends BaseLoggingEndpoint<Object> implemen
         for (ch.qos.logback.classic.Logger logger : getLoggerContext().getLoggerList()) {
             for (Iterator<Appender<ILoggingEvent>> index = logger.iteratorForAppenders(); index.hasNext();) {
                 Appender<ILoggingEvent> appender = index.next();
-                if (appender instanceof LogEventRepositoryAccessor) {
+                if (appender instanceof LogEventRepositorySupplier) {
                     appenderName.add(appender.getName());
                 }
             }

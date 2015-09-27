@@ -1,7 +1,7 @@
 package com.ticketmaster.boot.logging;
 
 
-public interface LogEventRepositoryAccessor {
+public interface LogEventRepositorySupplier {
 
     LogEventRepository getRepository();
 
