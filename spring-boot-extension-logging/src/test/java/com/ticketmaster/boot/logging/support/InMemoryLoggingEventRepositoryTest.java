@@ -20,8 +20,8 @@ public class InMemoryLoggingEventRepositoryTest {
         this.repository.add(new LogEvent("foo"));
         List<LogEvent> logEvents = this.repository.findAll();
         assertEquals(2, logEvents.size());
-        assertEquals("bar", logEvents.get(1).getLog());
-        assertEquals("foo", logEvents.get(0).getLog());
+        assertEquals("bar", logEvents.get(0).getLog());
+        assertEquals("foo", logEvents.get(1).getLog());
     }
     
     @Test
@@ -32,8 +32,8 @@ public class InMemoryLoggingEventRepositoryTest {
         this.repository.add(new LogEvent("foo"));
         List<LogEvent> logEvents = this.repository.findAll();
         assertEquals(2, logEvents.size());
-        assertEquals("foo", logEvents.get(1).getLog());
         assertEquals("foo", logEvents.get(0).getLog());
+        assertEquals("foo", logEvents.get(1).getLog());
     }
     
     @Test
@@ -43,8 +43,8 @@ public class InMemoryLoggingEventRepositoryTest {
         this.repository.add(new LogEvent("foo"));
         List<LogEvent> logEvents = this.repository.find(null);
         assertEquals(2, logEvents.size());
-        assertEquals("bar", logEvents.get(1).getLog());
-        assertEquals("foo", logEvents.get(0).getLog());
+        assertEquals("bar", logEvents.get(0).getLog());
+        assertEquals("foo", logEvents.get(1).getLog());
     }
     
     @Test
@@ -57,8 +57,8 @@ public class InMemoryLoggingEventRepositoryTest {
         this.repository.add(new LogEvent("foo"));
         List<LogEvent> logEvents = this.repository.find(date);
         assertEquals(2, logEvents.size());
-        assertEquals("foo", logEvents.get(1).getLog());
         assertEquals("foo", logEvents.get(0).getLog());
+        assertEquals("foo", logEvents.get(1).getLog());
     }
 
 }

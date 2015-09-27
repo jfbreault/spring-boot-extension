@@ -4,10 +4,10 @@ import ch.qos.logback.core.OutputStreamAppender;
 import ch.qos.logback.core.status.ErrorStatus;
 
 import com.ticketmaster.boot.logging.LogEventRepository;
-import com.ticketmaster.boot.logging.LogEventRepositoryAccessor;
+import com.ticketmaster.boot.logging.LogEventRepositorySupplier;
 import com.ticketmaster.boot.logging.support.LogEventOutputStream;
 
-public class MemoryAppender<E> extends OutputStreamAppender<E> implements LogEventRepositoryAccessor  {
+public class MemoryAppender<E> extends OutputStreamAppender<E> implements LogEventRepositorySupplier  {
 
     protected LogEventOutputStream outputStream;
     protected int size = 100;

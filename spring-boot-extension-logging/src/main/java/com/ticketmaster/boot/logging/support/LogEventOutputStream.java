@@ -12,7 +12,11 @@ public class LogEventOutputStream extends ByteArrayOutputStream{
 
     public LogEventOutputStream(int queueSyze) {
         super();
-        repository = new InMemoryLoggingEventRepository();
+        repository = createLogEventRepository(queueSyze);
+    }
+
+    protected InMemoryLoggingEventRepository createLogEventRepository(int queueSyze) {
+        return new InMemoryLoggingEventRepository(queueSyze);
     }
 
     @Override

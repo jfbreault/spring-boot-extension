@@ -36,6 +36,12 @@ public class InMemoryLoggingEventRepository implements LogEventRepository {
     private int capacity = 1000;
 
     private final List<LogEvent> logEvents = new LinkedList<LogEvent>();
+    
+    public InMemoryLoggingEventRepository(){}
+    
+    public InMemoryLoggingEventRepository(int capacity){
+        this.capacity = capacity;
+    }
 
     /**
      * @param capacity the capacity to set
@@ -52,7 +58,6 @@ public class InMemoryLoggingEventRepository implements LogEventRepository {
         synchronized (this.logEvents) {
             events = new ArrayList<LogEvent>(this.logEvents);
         }
-        Collections.reverse(events);
         return Collections.unmodifiableList(events);
     }
 
