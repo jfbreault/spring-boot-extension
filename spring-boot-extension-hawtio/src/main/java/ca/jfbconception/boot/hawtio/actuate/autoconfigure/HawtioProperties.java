@@ -1,4 +1,4 @@
-package org.springframework.boot.actuate.autoconfigure;
+package ca.jfbconception.boot.hawtio.actuate.autoconfigure;
 
 import java.util.HashMap;
 import java.util.Map;

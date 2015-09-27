@@ -1,4 +1,4 @@
-package org.springframework.boot.actuate.endpoint.mvc;
+package ca.jfbconception.boot.hawtio.actuate.endpoint.mvc;
 
 import java.util.Properties;
 

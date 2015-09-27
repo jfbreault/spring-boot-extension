@@ -1,9 +1,7 @@
-package org.springframework.boot.sample;
+package ca.jfbconception.boot.hawtio.sample;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.autoconfigure.HawtioAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 //@Import(HawtioAutoConfiguration.class)

@@ -1,4 +1,4 @@
-package org.springframework.boot.actuate.autoconfigure;
+package ca.jfbconception.boot.hawtio.actuate.autoconfigure;
 
 import io.hawt.system.ConfigManager;
 import io.hawt.web.AuthenticationFilter;
@@ -23,9 +23,7 @@ import javax.servlet.ServletContext;
 
 import org.jolokia.http.AgentServlet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.mvc.HawtioMvcEndpoint;
-import org.springframework.boot.actuate.endpoint.mvc.HawtioServletWrappingController;
-import org.springframework.boot.actuate.endpoint.mvc.HawtioServletWrappingControllerImpl;
+import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -36,6 +34,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import ca.jfbconception.boot.hawtio.actuate.endpoint.mvc.HawtioMvcEndpoint;
+import ca.jfbconception.boot.hawtio.actuate.endpoint.mvc.HawtioServletWrappingController;
+import ca.jfbconception.boot.hawtio.actuate.endpoint.mvc.HawtioServletWrappingControllerImpl;
 
 @ConditionalOnWebApplication
 @Configuration
